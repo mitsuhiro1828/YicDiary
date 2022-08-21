@@ -1,0 +1,56 @@
+create table Kinds(
+    KindsID int AUTO_INCREMENT,
+    Kind varchar(30) NOT NULL,
+    primary key (KindsID)
+)
+;
+
+
+create table Members(
+    MembersID int AUTO_INCREMENT,
+    FamilyName varchar(20) NOT NULL,
+    FirstName varchar(20) NOT NULL,
+    Password varchar(30) NOT NULL,
+    primary key (MembersID)
+)
+;
+create table Schedule(
+    ScheduleID int AUTO_INCREMENT,
+    MembersID int,
+    KindsID int,
+    Contents varchar(255) NOT NULL,
+    primary key (ScheduleID),
+    foreign key (MembersID) references Members (MembersID),
+    foreign key (KindsID) references Kinds (KindsID)
+)
+;
+
+create table ScheduleTable(
+    ScheduleTableID int AUTO_INCREMENT,
+    Date date NOT NULL,
+    ScheduleID int,
+    primary key (ScheduleTableID),
+    foreign key (ScheduleID) references Schedule(ScheduleID)
+)
+;
+
+
+
+insert into Kinds(kind) values('学校');
+insert into Kinds(kind) values('試験');
+insert into Kinds(kind) values('課題');
+insert into Kinds(kind) values('行事');
+insert into Kinds(kind) values('就活');
+insert into Kinds(kind) values('アルバイト');
+insert into Kinds(kind) values('旅行');
+
+
+--------------------------------------------
+create table tmp(
+    id int not null auto_increment,
+    days date not null,
+    kinds varchar(10) NOT NULL,
+    memo varchar(255) NOT NULL,
+    primary key (id)
+)
+;
